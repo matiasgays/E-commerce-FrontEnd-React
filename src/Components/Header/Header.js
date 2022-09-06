@@ -16,10 +16,10 @@ import avatar from './images/avatar_1.png';
 import SensorsIcon from '@mui/icons-material/Sensors';
 
 
-const pages = ['IoT Dashboard', 'Sensors'];
+const pages = ['IoT Dashboard', 'Devices'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Header = () => {
+const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -111,7 +111,7 @@ const Header = () => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1 }}>
             <Tooltip title="IoT enabled devices">
                 <Button variant="contained" startIcon={<SensorsIcon />} color="success">
                     Numbers
@@ -154,6 +154,6 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;
 
 
