@@ -13,10 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from './images/logo.png';
 import avatar from './images/avatar_1.png';
-import SensorsIcon from '@mui/icons-material/Sensors';
+import CartWidget from './CartWidget';
 
 
-const pages = ['IoT Dashboard', 'Devices'];
+const pages = ['Dashboard', 'Devices'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
@@ -111,14 +111,7 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 1 }}>
-            <Tooltip title="IoT enabled devices">
-                <Button variant="contained" startIcon={<SensorsIcon />} color="success">
-                    Numbers
-                </Button>
-            </Tooltip>
-          </Box>
-
+          <CartWidget />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

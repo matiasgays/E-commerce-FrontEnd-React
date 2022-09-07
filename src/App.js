@@ -1,11 +1,15 @@
 import React from "react";
-import './App.css';
-import Header from './Components/Header/Header';
+import NavBar from './Components/Header/NavBar';
+import ItemListContainer from './Components/Containers/ItemListContainer'
 
 function App() {
+
+  const mensaje = "ItemListContainer";
+
   return (
     <>
-    <Header/>
+    <NavBar/>
+    <ItemListContainer greeting={mensaje}/>
     </>
   );
 }
