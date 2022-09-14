@@ -1,11 +1,11 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
-import CartWidget from './CartWidget';
-import Logo from './Logo';
-import MenuCategories from './MenuCategories';
-import UserWidget from './UserWidget';
+import * as React from 'react'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Container from '@mui/material/Container'
+import CartWidget from './CartWidget'
+import Logo from './Logo'
+import MenuCategories from './MenuCategories'
+import UserWidget from './UserWidget'
 
 const NavBar = () => {
 
@@ -20,9 +20,9 @@ const NavBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar
 
 

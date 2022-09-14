@@ -1,8 +1,8 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button'; 
-import Tooltip from '@mui/material/Tooltip';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Tooltip from '@mui/material/Tooltip'
+import LocalMallIcon from '@mui/icons-material/LocalMall'
 
 const CartWidget = () => {
     return (
@@ -16,4 +16,4 @@ const CartWidget = () => {
     )
 }
 
-export default CartWidget;
+export default CartWidget
