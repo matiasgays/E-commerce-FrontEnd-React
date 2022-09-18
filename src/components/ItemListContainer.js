@@ -10,7 +10,7 @@ const ItemListContainer = ({greeting}) => {
     const [loading, setLoading] = React.useState(true)
 
     React.useEffect(() => {
-        const customFetch = new Promise((resolve, reject) => {
+        new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(DATA)
             },2000)
@@ -19,6 +19,7 @@ const ItemListContainer = ({greeting}) => {
             setListProducts(res);
             setLoading(!loading)
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
     const addItemToCart = (num) => {
