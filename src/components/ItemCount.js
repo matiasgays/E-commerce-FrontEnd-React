@@ -27,7 +27,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
                     <RemoveIcon />
                 </IconButton>
             </Box>
-            <Button variant="outlined" onClick={e => counter!=0 && onAdd(counter)}>Add to Cart</Button>
+            <Button variant="outlined" onClick={e => counter!==0 && onAdd(counter)}>Add to Cart</Button>
         </>
     )
 }

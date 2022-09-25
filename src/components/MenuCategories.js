@@ -6,8 +6,22 @@ import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import DATA from '../products'
+import { NavLink } from 'react-router-dom'
 
-const pages = ['Dashboard', 'Devices']
+let uniqueCategories = [];
+
+uniqueCategories = DATA.filter(element => {
+  const isDuplicate = uniqueCategories.includes(element.category);
+
+  if (!isDuplicate) {
+    uniqueCategories.push(element.category);
+
+    return true;
+  }
+
+  return false;
+});
 
 const MenuCategories = () => {
 
@@ -52,21 +66,23 @@ const MenuCategories = () => {
                     display: { xs: 'block', md: 'none' },
                 }}
                 >
-                {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
+                {uniqueCategories.map((item) => (
+                    <MenuItem key={item.id} onClick={handleCloseNavMenu}>
+                      <NavLink to={item.routeCat} style={{textDecoration: 'none'}}>
+                        <Typography textAlign="center">{item.category}</Typography>
+                      </NavLink>
                     </MenuItem>
                 ))}
               </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
+              {uniqueCategories.map((item) => (
                 <Button
-                    key={page}
+                    key={item.id}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                {page}
+                <NavLink to={item.routeCat} style={{textDecoration: 'none', color: 'white'}}>{item.category}</NavLink>
                 </Button>
               ))}
           </Box>
