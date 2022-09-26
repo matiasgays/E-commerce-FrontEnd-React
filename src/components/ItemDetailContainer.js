@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
 
     return (
         <>
-            {isLoading ? <CircularProgress/> :  <ItemDetail item={itemDetail}/>}
+            {isLoading ? <CircularProgress /> :  <ItemDetail item={itemDetail}/>}
         </>
     )
 }

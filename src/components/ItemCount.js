@@ -18,16 +18,18 @@ const ItemCount = ({stock, initial, onAdd}) => {
 
     return (
         <>
-            <Box component="span" sx={{ p: 2, backgroundColor: '#EDEEFF' }}>
+            <Box component="span" sx={{ p: 2, bgcolor: '#EDEEFF' }}>
                 <IconButton onClick={handlePlusCounter} disabled={counter >= stock ? true : false}>
-                    <AddIcon />
+                    <AddIcon sx={{color: 'black', px: 1}}/>
                 </IconButton>
+                <Box component="span" sx={{ p: 3 }}>
                 {counter}
+                </Box>
                 <IconButton onClick={handleSubCounter} disabled={counter > 0 ? false : true}>
-                    <RemoveIcon />
+                    <RemoveIcon sx={{color: 'black', px: 1}}/>
                 </IconButton>
-            </Box>
-            <Button variant="outlined" onClick={e => counter!==0 && onAdd(counter)}>Add to Cart</Button>
+                <Button variant="contained" onClick={e => counter!==0 && onAdd(counter)}>Add to Cart</Button>
+            </Box>  
         </>
     )
 }

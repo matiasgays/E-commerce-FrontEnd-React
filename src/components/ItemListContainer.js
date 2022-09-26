@@ -1,5 +1,4 @@
 import * as React from 'react'
-import ItemCount from './ItemCount'
 import ItemList from './ItemList'
 import DATA from '../products'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -24,15 +23,10 @@ const ItemListContainer = ({greeting}) => {
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[IdCategory])
-    
-    const addItemToCart = (num) => {
-        console.log(num)
-    }
 
     return (
         <>
-            {/* {<ItemCount stock={5} initial={1} onAdd={addItemToCart}/>} */}
-            {loading ? <CircularProgress/> : <ItemList items={listProducts}/>}
+            {loading ? <CircularProgress /> : <ItemList items={listProducts}/>}
         </>
     )
 }
