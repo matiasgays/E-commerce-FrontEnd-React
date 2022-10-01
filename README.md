@@ -1,6 +1,5 @@
 # React App Documentation
 
 # React App Navigation GIF
-![](https://github.com/matiasgays/IoTy_navigation.gif)
-
+![](https://github.com/matiasgays/IoTy_navigation.gif/blob/main/IoTy_navigation.gif)
 
