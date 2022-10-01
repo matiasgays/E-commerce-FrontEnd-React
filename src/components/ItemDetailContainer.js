@@ -6,33 +6,33 @@ import { useParams } from 'react-router-dom'
 
 const ItemDetailContainer = () => {
 
-    let { IdProduct } = useParams()
+  let { IdProduct } = useParams()
 
-    const getItem = () => {
-        return (
-            new Promise ((resolve, reject) => {
-                setTimeout(() => {
-                    resolve(DATA.filter(value => {return(value.name === IdProduct)}))
-                    setIsLoading(!isLoading)
-                },2000)
-            })
-        )
-    }
-
-    const [itemDetail, setItemDetail] = React.useState('')
-    const [isLoading, setIsLoading] = React.useState(true)
-
-    React.useEffect(() => {
-        getItem()
-        .then((res) => setItemDetail(res[0]))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]) 
-
+  const getItem = () => {
     return (
-        <>
-            {isLoading ? <CircularProgress /> :  <ItemDetail item={itemDetail}/>}
-        </>
+      new Promise ((resolve, reject) => {
+        setTimeout(() => {
+          resolve(DATA.filter(value => {return(value.name === IdProduct)}))
+          setIsLoading(!isLoading)
+        },2000)
+      })
     )
+  }
+
+  const [itemDetail, setItemDetail] = React.useState('')
+  const [isLoading, setIsLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    getItem()
+    .then((res) => setItemDetail(res[0]))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]) 
+
+  return (
+    <>
+      {isLoading ? <CircularProgress sx={{margin:10}}/> :  <ItemDetail item={itemDetail}/>}
+    </>
+  )
 }
 
 export default ItemDetailContainer

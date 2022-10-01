@@ -2,12 +2,12 @@ import * as React from 'react'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import ItemBreadcrumbs from './ItemBreadcrumbs'
 import ItemCount from './ItemCount'
 import Button from '@mui/material/Button'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const ItemDescriptionList = ({item}) => {
 
@@ -36,7 +36,7 @@ const ItemDescriptionList = ({item}) => {
           <Link to={'/cart'} style={{textDecoration: 'none'}}><Button variant="contained">Checkout</Button></Link>}
       </ListItem>
     </List>
-  );
+  )
 }
 
 export default ItemDescriptionList
