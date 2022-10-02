@@ -6,16 +6,19 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import ItemBreadcrumbs from './ItemBreadcrumbs'
 import ItemCount from './ItemCount'
 import Button from '@mui/material/Button'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from './CartContext'
 
 const ItemDescriptionList = ({item}) => {
 
-  const [toggleCheckout, setToggleChekcout] = useState(true)
+  const { addItem } = useContext(CartContext)
+
+  const [toggleCheckout, setToggleCheckout] = useState(true)
   
   const addItemToCart = (num) => {
-    console.log(num);
-    setToggleChekcout(false)
+    setToggleCheckout(false)
+    addItem(item,num)
   }
 
   return (
