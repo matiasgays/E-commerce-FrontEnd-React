@@ -8,13 +8,13 @@ import ItemCount from './ItemCount'
 import Button from '@mui/material/Button'
 import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { CartContext } from './CartContext'
+import { CartContext } from '../context/CartContext'
 
 const ItemDescriptionList = ({item}) => {
 
-  const { addItem } = useContext(CartContext)
-
   const [toggleCheckout, setToggleCheckout] = useState(true)
+
+  const { addItem } = useContext(CartContext)
   
   const addItemToCart = (num) => {
     setToggleCheckout(false)
