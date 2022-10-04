@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
-import avatar from './images/avatar_1.png'
+import avatar from '../images/avatar_1.png'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Typography from '@mui/material/Typography'
-import logo from './images/logo.png'
+import logo from '../images/logo.png'
 import Avatar from '@mui/material/Avatar'
 import { Link } from 'react-router-dom'
 
