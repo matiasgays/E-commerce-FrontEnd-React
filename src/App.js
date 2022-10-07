@@ -12,17 +12,19 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter>
-        <CartContextProvider>
-          <NavBar/>
-          <Routes>
-            <Route path="/" element={<ItemListContainer greeting={mensaje}/>}/>
-            <Route path="/category/:IdCategory" element={<ItemListContainer greeting={mensaje}/>}/> 
-            <Route path="/item/:IdProduct" element={<ItemDetailContainer/>}/>
-            <Route path="/cart" element={<Cart/>}/>
-          </Routes>
-        </CartContextProvider>
-      </BrowserRouter>
+    <React.StrictMode>
+        <BrowserRouter>
+          <CartContextProvider>
+            <NavBar/>
+            <Routes>
+              <Route path="/" element={<ItemListContainer greeting={mensaje}/>}/>
+              <Route path="/category/:IdCategory" element={<ItemListContainer greeting={mensaje}/>}/> 
+              <Route path="/item/:IdProduct" element={<ItemDetailContainer/>}/>
+              <Route path="/cart" element={<Cart/>}/>
+            </Routes>
+          </CartContextProvider>
+        </BrowserRouter>
+      </React.StrictMode>
     </>
   )
 }

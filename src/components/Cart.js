@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -15,28 +15,25 @@ import { Link } from 'react-router-dom'
 const Cart = () => {
 
   const { cartList, removeItem, clear } = useContext(CartContext)
-  const [emptyCart, setEmptyCart] = useState(false)
-
-  React.useEffect(() => {
-    cartList.length === 0 && setEmptyCart(!emptyCart)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
 
   const toggleCartView = () => {
     clear()
-    setEmptyCart(!emptyCart)
   }
 
   return (
     <>
-    {emptyCart ? 
-      <Link to={'/'} style={{textDecoration: 'none'}}><Button variant="contained" sx={{margin:10}}>Cart empty</Button></Link> :
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={5}>
-                Cart
+              {cartList.length === 0 ?
+                <>
+                  <h1>Cart is empty</h1>
+                  <Button variant="contained"><Link to={'/'} style={{textDecoration: 'none'}}>Go Back</Link></Button>
+                </> :
+                <h1>Cart</h1>
+              }
               </TableCell>
             </TableRow>
             <TableRow>
@@ -56,7 +53,7 @@ const Cart = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell>
-                  <DeleteForeverIcon onClick={() => removeItem(item)}/>
+                  <DeleteForeverIcon onClick={() => removeItem(item.id)}/>
                 </TableCell>
                 <TableCell component="th" scope="row">
                   {item.name}
@@ -71,13 +68,12 @@ const Cart = () => {
                   Total 
                 </TableCell>
                 <TableCell align="right">
-                  Total 
+                  {cartList.reduce((total, item)=>total+(item.price*item.quantity),0)} 
                 </TableCell>
               </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
-    }
   </>
   )
 }
