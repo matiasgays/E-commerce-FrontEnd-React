@@ -1,30 +1,31 @@
 import * as React from 'react'
 import ItemDetail from './ItemDetail'
 import CircularProgress from '@mui/material/CircularProgress'
-import DATA from '../products'
 import { useParams } from 'react-router-dom'
+import { db } from '../firebase/firebase'
+import { doc, getDoc, collection } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
-
-  let { IdProduct } = useParams()
-
-  const getItem = () => {
-    return (
-      new Promise ((resolve, reject) => {
-        setTimeout(() => {
-          resolve(DATA.filter(value => {return(value.name === IdProduct)}))
-          setIsLoading(!isLoading)
-        },2000)
-      })
-    )
-  }
-
+  
+  let { id }  = useParams()
   const [itemDetail, setItemDetail] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(true)
 
   React.useEffect(() => {
-    getItem()
-    .then((res) => setItemDetail(res[0]))
+    
+    const collections = collection(db,'products')
+    const itemRef = doc(collections,id)
+    const fetchItem = async () => {
+      try {
+        const itemCollection = await getDoc(itemRef)
+        setItemDetail({...itemCollection.data(),id: itemCollection.id})
+        setIsLoading(!isLoading)
+        
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    fetchItem()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]) 
 

@@ -9,7 +9,7 @@ const ItemBreadcrumbs = ({item}) => {
       <Link to={'/'} style={{textDecoration: 'none'}} >
         Home
       </Link>
-      <Link to={item.routeCat} style={{textDecoration: 'none'}}>
+      <Link to={item.pathCat} style={{textDecoration: 'none'}}>
         {item.category}
       </Link>
       <Typography color="text.primary">{item.name}</Typography>

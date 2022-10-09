@@ -28,8 +28,7 @@ const CartWidget = () => {
   return (
     <>
       <Box sx={{ flexGrow: 0 }}>
-        <Link to='/cart' style={{textDecoration: 'none', color: 'white'}} >
-          <Button variant="contained" startIcon={<LocalMallIcon />} color="success" onMouseOver={handleOpenUserMenu}>
+          <Button variant="contained" startIcon={<LocalMallIcon />} color="success" onMouseEnter={handleOpenUserMenu}>
             {cartList.length > 0 && cartList.reduce(((total, itemQ)=>total+itemQ.quantity),0)}
           </Button>
           {cartList.length > 0 &&
@@ -47,7 +46,7 @@ const CartWidget = () => {
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              onClick={handleCloseUserMenu}
             >
             {cartList.map((item) => (
               <MenuItem key={item.name} divider={true}>
@@ -60,9 +59,15 @@ const CartWidget = () => {
                 </Typography>
               </MenuItem>
             ))}
+            <MenuItem style={{justifyContent: 'center'}}>
+              <Link to='/cart' style={{textDecoration: 'none', color: 'white'}} >
+              <Button variant="contained">
+                Checkout
+              </Button>
+              </Link>
+            </MenuItem>
             </Menu>
           }
-        </Link>
       </Box>
     </>
   )

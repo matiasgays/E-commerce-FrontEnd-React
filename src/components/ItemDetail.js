@@ -13,6 +13,7 @@ const ItemDetail =({item}) => {
             <img
               src={`../../${item.img}`}
               alt={item.name}
+              style={{objectFit: 'scale-down', height: 400}}
             />
           </ImageListItem>
         </Grid>

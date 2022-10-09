@@ -8,8 +8,6 @@ import CartContextProvider from "./context/CartContext"
 
 const App = () => {
 
-  const mensaje = "ItemListContainer"
-
   return (
     <>
     <React.StrictMode>
@@ -17,9 +15,9 @@ const App = () => {
           <CartContextProvider>
             <NavBar/>
             <Routes>
-              <Route path="/" element={<ItemListContainer greeting={mensaje}/>}/>
-              <Route path="/category/:IdCategory" element={<ItemListContainer greeting={mensaje}/>}/> 
-              <Route path="/item/:IdProduct" element={<ItemDetailContainer/>}/>
+              <Route path="/" element={<ItemListContainer/>}/>
+              <Route path="/category/:IdCategory" element={<ItemListContainer/>}/> 
+              <Route path="/:id" element={<ItemDetailContainer/>}/>
               <Route path="/cart" element={<Cart/>}/>
             </Routes>
           </CartContextProvider>

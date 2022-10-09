@@ -26,13 +26,17 @@ const Cart = () => {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={5}>
+              <TableCell align="center" colSpan={5} style={{lineHeight: 2}}>
               {cartList.length === 0 ?
                 <>
-                  <h1>Cart is empty</h1>
-                  <Button variant="contained"><Link to={'/'} style={{textDecoration: 'none'}}>Go Back</Link></Button>
+                  <span style={{fontSize: 30}}>Cart is empty</span>
+                  <Button variant="contained" sx={{color: 'white', ml: 3}}>
+                    <Link to={'/'} style={{textDecoration: 'none',color: 'inherit'}}>
+                      Go Back
+                    </Link>
+                  </Button>
                 </> :
-                <h1>Cart</h1>
+                <span style={{fontSize: 30}}>Cart</span>
               }
               </TableCell>
             </TableRow>
