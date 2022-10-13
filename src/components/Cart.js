@@ -11,12 +11,15 @@ import Paper from '@mui/material/Paper'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
+import Form from './Form'
 
 const Cart = () => {
 
   const { cartList, removeItem, clear } = useContext(CartContext)
+  let sumTotal = 0
+  let totalItems = []
 
-  const toggleCartView = () => {
+  const clearCartView = () => {
     clear()
   }
 
@@ -42,7 +45,7 @@ const Cart = () => {
             </TableRow>
             <TableRow>
               <TableCell>
-                <DeleteForeverIcon sx={{ color: 'red' }} variant="contained" onClick={toggleCartView}/>
+                <DeleteForeverIcon sx={{ color: 'red' }} variant="contained" onClick={clearCartView}/>
               </TableCell>
               <TableCell align="center">Item</TableCell>
               <TableCell align="right">Quantity</TableCell>
@@ -51,33 +54,36 @@ const Cart = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cartList.map((item) => (
-              <TableRow
-              key={item.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell>
-                  <DeleteForeverIcon onClick={() => removeItem(item.id)}/>
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {item.name}
-                </TableCell>
-                <TableCell align="right">{item.quantity}</TableCell>
-                <TableCell align="right">{item.price}</TableCell>
-                <TableCell align="right">{item.price*item.quantity}</TableCell>
-              </TableRow>
-            ))}
+            {cartList.map((item) => {
+              totalItems.push(item)
+              return (
+                <TableRow
+                  key={item.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell>
+                      <DeleteForeverIcon onClick={() => removeItem(item.id)}/>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {item.name}
+                    </TableCell>
+                    <TableCell align="right">{item.quantity}</TableCell>
+                    <TableCell align="right">{item.price}</TableCell>
+                    <TableCell align="right">{item.price*item.quantity}</TableCell>
+                </TableRow>
+            )})}
             <TableRow>
                 <TableCell align="left" colSpan={4}>
                   Total 
                 </TableCell>
                 <TableCell align="right">
-                  {cartList.reduce((total, item)=>total+(item.price*item.quantity),0)} 
+                  {sumTotal = cartList.reduce((total, item)=>total+(item.price*item.quantity),0)} 
                 </TableCell>
               </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
+      <Form items = {totalItems} total={sumTotal}/>
   </>
   )
 }

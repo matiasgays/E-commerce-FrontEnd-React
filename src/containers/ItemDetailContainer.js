@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ItemDetail from './ItemDetail'
+import ItemDetail from '../components/ItemDetail'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useParams } from 'react-router-dom'
 import { db } from '../firebase/firebase'
