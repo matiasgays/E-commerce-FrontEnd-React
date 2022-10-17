@@ -6,6 +6,11 @@ export const CartContext = createContext()
 const CartContextProvider = ({children}) => {
 
   const [cartList, setCartList] = useState([])
+
+  const addRowArray = (newItem, q) => {
+    newItem.quantity = q
+    setCartList([...cartList, newItem])
+  }
   
   const updateArray = (updateItem, quantity) => {
     let newArr = cartList.map((item) => {
@@ -14,22 +19,26 @@ const CartContextProvider = ({children}) => {
       }
       return item
     })
-    setCartList(newArr);
-  };
+    setCartList(newArr)
+  }
 
   const addItem = (item, quantity) => {
-    if(cartList.some((value) => value.name === item.name)) {
+    cartList.find((value) => value.name === item.name) === undefined ?
+      addRowArray(item, quantity)
+    :
       updateArray(item, quantity)
-    }
-    else{
-      item.quantity = quantity
-      setCartList([...cartList, item])
-    }
   }
 
   const removeItem = (itemId) => {
     let newArr = cartList.filter(item => item.id !== itemId)
     setCartList(newArr)
+  }
+
+  const isInCart = (item) => {
+    const itemFound = cartList.find((product) => {
+      return (product.id === item.id) 
+    })
+    return itemFound
   }
 
   const clear = () => {
@@ -38,7 +47,7 @@ const CartContextProvider = ({children}) => {
 
   return (
     <>
-      <CartContext.Provider value={{cartList, addItem, removeItem, clear}}>{children}</CartContext.Provider>
+      <CartContext.Provider value={{cartList, addItem, removeItem, clear, isInCart}}>{children}</CartContext.Provider>
     </>
   )
 }

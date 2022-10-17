@@ -5,9 +5,9 @@ import SendIcon from '@mui/icons-material/Send'
 import { db } from '../firebase/firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
-const textFields = [['Name','text'], ['Surname','text'], ['Phone','number'], ['Email','email']]
+const textFields = [['Name','text'], ['Surname','text'], ['Phone','tel'], ['Email','email']]
 
-const Form = ({items, total}) => {
+const Form = ({items, total, submit}) => {
     
   const [inputs, setInputs] = useState({})
 
@@ -22,42 +22,58 @@ const Form = ({items, total}) => {
     const collections = collection(db, 'sells')
     const fetchDoc = async () => {
       try {
-        await addDoc(collections, {
+        const newDoc = await addDoc(collections, {
           buyer: inputs,
           items,
           total,
           date: serverTimestamp()
         })
-        alert(`Your order was loaded successfully. Your order ID is ${collection.id}`)
+        submit(newDoc.id)
       } catch (e) {
         console.log(e)
       }
     }
-    fetchDoc() 
+    fetchDoc()
   }
 
   return(
-    <form onSubmit={handleSubmit}>
-      {textFields.map((field,i) => {
-        return (
-          <TextField
-            key={i}
-            id="outlined-basic"
-            type={field[1]}
-            label={field[0]}
-            name={field[0]}
-            variant="outlined" 
-            margin="normal"
-            onChange = {handleChange} 
-            value = {inputs.field}
-          />
+    <>
+      <form onSubmit={handleSubmit}>
+        <h1 style={{textAlign: 'center'}}>
+          Form
+        </h1>
+        {textFields.map((field,i) => {
+          return (
+            <div style={styles} key={i}>
+              <TextField
+                required
+                key={i}
+                id="outlined-basic"
+                type={field[1]}
+                label={field[0]}
+                name={field[0]}
+                variant="outlined" 
+                onChange = {handleChange} 
+                value = {inputs.field}
+                margin="normal"
+                sx={{ width: 1/4}}
+              />
+            </div>
+          )}
         )}
-      )}
-      <Button variant="contained" endIcon={<SendIcon />} type='submit'>
-        Send
-      </Button>
-    </form>
+        <div style={styles}>
+          <Button variant="contained" endIcon={<SendIcon />} type='submit' sx={{width: 1/4, my: 5}}>
+            Send
+          </Button>
+        </div>
+      </form>
+    </>
   )
 }
 
 export default Form
+
+const styles = {
+  display: 'flex',  
+  justifyContent:'center'
+}

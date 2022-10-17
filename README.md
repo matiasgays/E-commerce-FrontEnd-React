@@ -2,7 +2,7 @@
 
 ![Ioty-logo][Logo-url]
 
-A e-commerce web page for electronics devices.
+A simple e-commerce website for electronics devices built with React Components.
 
 ## Requirements
 No special requirements
@@ -29,6 +29,13 @@ There is no configuration needed.
 ## Usage
 
 ![](https://github.com/matiasgays/IoTy_navigation.gif/blob/main/IoTy_navigation.gif?raw=true)
+
+*Description:*
+- An item list view (displayed as cards) showing all products retrieved from the database
+- A detail view of each item
+- A category menu accesible from the navigation bar
+- A cart view
+- A form embedded in the cart view that simulates a checkout form. The submitted data is stored in a database collection
 
 ## Contributing
 Pull requests are welcome.

@@ -14,11 +14,21 @@ const ItemDescriptionList = ({item}) => {
 
   const [toggleCheckout, setToggleCheckout] = useState(true)
 
-  const { addItem } = useContext(CartContext)
+  const { addItem, isInCart } = useContext(CartContext)
   
   const addItemToCart = (num) => {
     setToggleCheckout(false)
     addItem(item,num)
+  }
+
+  // console.log(item.stock)
+  const updateStock = () => {
+    isInCart(item)
+    if (isInCart(item) === undefined) {
+      return (item.stock)
+    }  
+    
+    return (item.stock - isInCart(item).quantity)
   }
 
   return (
@@ -35,8 +45,8 @@ const ItemDescriptionList = ({item}) => {
       </ListItem>
       <ListItem>
         {toggleCheckout ? 
-          <ItemCount stock={5} initial={1} onAdd={addItemToCart}/> : 
-          <Link to={'/cart'} style={{textDecoration: 'none'}}><Button variant="contained">Checkout</Button></Link>}
+          <ItemCount stock={updateStock()} initial={1} onAdd={addItemToCart}/> : 
+          <Link to={'/cart'} style={{textDecoration: 'none'}}><Button variant="contained">View Cart</Button></Link>}
       </ListItem>
     </List>
   )

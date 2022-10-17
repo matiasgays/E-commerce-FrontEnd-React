@@ -1,91 +1,66 @@
 import * as React from 'react'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from '../context/CartContext'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import Form from './Form'
+import CartTable from './CartTable'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
-import Form from './Form'
+import Typography from '@mui/material/Typography'
+
+let sumTotal = 0
+let totalItems = []
+let orderPlaced = ''
 
 const Cart = () => {
 
-  const { cartList, removeItem, clear } = useContext(CartContext)
-  let sumTotal = 0
-  let totalItems = []
+  const { cartList, clear } = useContext(CartContext)
+  const [displayForm, setDisplayForm] = useState(false)
+  const [submit, setSubmit] = useState(false)
 
-  const clearCartView = () => {
+  const handleForm = () => {
+    setDisplayForm(!displayForm)
+    totalItems = cartList.map((item) => {
+      return (item)
+    })
+    sumTotal = cartList.reduce((total, item)=>total+(item.price*item.quantity),0)
+  }
+
+  const handleCheckout = (id) => {
+    orderPlaced = `Your order number: ${id} was placed successfully`
+    setSubmit(!submit)
     clear()
   }
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center" colSpan={5} style={{lineHeight: 2}}>
-              {cartList.length === 0 ?
-                <>
-                  <span style={{fontSize: 30}}>Cart is empty</span>
-                  <Button variant="contained" sx={{color: 'white', ml: 3}}>
-                    <Link to={'/'} style={{textDecoration: 'none',color: 'inherit'}}>
-                      Go Back
-                    </Link>
-                  </Button>
-                </> :
-                <span style={{fontSize: 30}}>Cart</span>
-              }
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <DeleteForeverIcon sx={{ color: 'red' }} variant="contained" onClick={clearCartView}/>
-              </TableCell>
-              <TableCell align="center">Item</TableCell>
-              <TableCell align="right">Quantity</TableCell>
-              <TableCell align="right">Price&nbsp;($)</TableCell>
-              <TableCell align="right">Subtotal&nbsp;($)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {cartList.map((item) => {
-              totalItems.push(item)
-              return (
-                <TableRow
-                  key={item.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell>
-                      <DeleteForeverIcon onClick={() => removeItem(item.id)}/>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {item.name}
-                    </TableCell>
-                    <TableCell align="right">{item.quantity}</TableCell>
-                    <TableCell align="right">{item.price}</TableCell>
-                    <TableCell align="right">{item.price*item.quantity}</TableCell>
-                </TableRow>
-            )})}
-            <TableRow>
-                <TableCell align="left" colSpan={4}>
-                  Total 
-                </TableCell>
-                <TableCell align="right">
-                  {sumTotal = cartList.reduce((total, item)=>total+(item.price*item.quantity),0)} 
-                </TableCell>
-              </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Form items = {totalItems} total={sumTotal}/>
-  </>
+      {submit ? 
+        <Typography sx={{m: 5}}>{orderPlaced}</Typography>
+      :
+        <>
+          <h1 style={{textAlign: 'center'}}>
+            Cart
+          </h1>
+          {cartList.length === 0 ?
+            <div style={styles}>
+              <Button variant="contained" sx={{color: 'white', width: 1/4}}>
+                <Link to={'/'} style={{textDecoration: 'none',color: 'inherit'}}>
+                  Cart is empty
+                </Link>
+              </Button>
+            </div> 
+            : <CartTable handleForm={handleForm} changeState={displayForm}/>
+          }
+          {(displayForm && cartList.length > 0) && <Form items = {totalItems} total={sumTotal} submit={handleCheckout}/>
+          }
+          </>
+      }
+    </>
   )
 }
 
 export default Cart
+
+const styles = {
+  display: 'flex',  
+  justifyContent:'center'
+}
