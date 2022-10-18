@@ -21,7 +21,6 @@ const ItemDescriptionList = ({item}) => {
     addItem(item,num)
   }
 
-  // console.log(item.stock)
   const updateStock = () => {
     isInCart(item)
     if (isInCart(item) === undefined) {

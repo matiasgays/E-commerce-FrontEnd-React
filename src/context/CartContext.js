@@ -12,10 +12,10 @@ const CartContextProvider = ({children}) => {
     setCartList([...cartList, newItem])
   }
   
-  const updateArray = (updateItem, quantity) => {
+  const updateArray = (updateItem, updateQuantity) => {
     let newArr = cartList.map((item) => {
       if (updateItem.id === item.id) {
-        item.quantity += quantity
+        item.quantity += updateQuantity
       }
       return item
     })
@@ -23,10 +23,8 @@ const CartContextProvider = ({children}) => {
   }
 
   const addItem = (item, quantity) => {
-    cartList.find((value) => value.name === item.name) === undefined ?
-      addRowArray(item, quantity)
-    :
-      updateArray(item, quantity)
+    isInCart(item) === undefined ?
+      addRowArray(item, quantity) : updateArray(item, quantity)
   }
 
   const removeItem = (itemId) => {
