@@ -12,9 +12,7 @@ const ItemList = ({items}) => {
           <Grid xs={2} sm={4} md={4} key={item.id}>
             <Item  
               name={item.name} 
-              category={item.category}
               price={item.price}
-              img={`../../${item.img}`}
               key={item.id}
               path={item.id}
             />

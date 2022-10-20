@@ -4,26 +4,35 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import DATA from '../products'
 import { NavLink } from 'react-router-dom'
-
-let uniqueCategories = []
-
-uniqueCategories = DATA.filter(element => {
-  const isDuplicate = uniqueCategories.includes(element.category)
-
-  if (!isDuplicate) {
-    uniqueCategories.push(element.category)
-    return true
-  }
-  return false
-})
+import { db } from '../firebase/firebase'
+import { getDocs, collection } from 'firebase/firestore'
 
 const MenuCategories = () => {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null)
+  const [categories, setCategories] = React.useState([])
+  
+  React.useEffect(() => {
+    const collections = collection(db,'products')
+    const fetchProducts = async () => {
+      try{
+        const listCategories = []
+        const productsCollection = await getDocs(collections)
+        productsCollection.forEach(product => {
+          if (listCategories.includes(product.data().category) === false) {
+            listCategories.push(product.data().category)
+          }
+          setCategories([...listCategories])
+        })
+      } catch (e) {
+        console.error(e)
+      }
+    }
+    fetchProducts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget)
@@ -64,23 +73,21 @@ const MenuCategories = () => {
               display: { xs: 'block', md: 'none' },
           }}
         >
-          {uniqueCategories.map((item) => (
-              <MenuItem key={item.id} onClick={handleCloseNavMenu}>
-                <NavLink to={item.routeCat} style={{textDecoration: 'none'}}>
-                  <Typography textAlign="center">{item.category}</Typography>
-                </NavLink>
+          {categories.map((cat, i) => (
+              <MenuItem key={i} onClick={handleCloseNavMenu}>
+                <NavLink to={`/category/${cat}`} style={{textDecoration: 'none'}}>{cat}</NavLink>
               </MenuItem>
           ))}
         </Menu>
       </Box>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-        {uniqueCategories.map((item) => (
+        {categories.map((cat, i) => (
           <Button
-            key={item.id}
+            key={i}
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
-            <NavLink to={item.routeCat} style={{textDecoration: 'none', color: 'white'}}>{item.category}</NavLink>
+            <NavLink to={`/category/${cat}`} style={{textDecoration: 'none', color: 'white'}}>{cat}</NavLink>
           </Button>
         ))}
       </Box>

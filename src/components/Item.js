@@ -7,13 +7,13 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { Link } from 'react-router-dom'
 
-const Item = ({id, name, category, price, img, path}) => {
+const Item = ({id, name, price, path}) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        src={img}
+        src={process.env.PUBLIC_URL + `/${name}.jpg`}
         alt={name}
         sx={{objectFit: 'contain'}}
       />

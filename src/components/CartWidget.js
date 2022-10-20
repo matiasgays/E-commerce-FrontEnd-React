@@ -51,7 +51,7 @@ const CartWidget = () => {
             {cartList.map((item) => (
               <MenuItem key={item.name} divider={true}>
                 <ListItemAvatar>
-                  <Avatar alt="Travis Howard" src={`../../${item.img}`} />
+                  <Avatar alt="Travis Howard" src={process.env.PUBLIC_URL + `/${item.name}.jpg`} />
                 </ListItemAvatar>
                 <ListItemText sx={{px: 3}}>{item.name}</ListItemText>
                 <Typography variant="body2" color="text.secondary">

@@ -11,7 +11,7 @@ const ItemDetail =({item}) => {
         <Grid item xs={6}>
           <ImageListItem >
             <img
-              src={`../../${item.img}`}
+              src={process.env.PUBLIC_URL + `/${item.name}.jpg`}
               alt={item.name}
               style={{objectFit: 'scale-down', height: 400}}
             />
