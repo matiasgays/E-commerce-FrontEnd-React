@@ -1,58 +1,38 @@
-# IoTy
+# E-commerce Front-end
 
-![Ioty-logo][Logo-url]
+This project is the front-end of an e-commerce platform built with React. It includes features such as product catalog, shopping cart, checkout, and customer management.
 
-A simple e-commerce website for electronics devices built with React Components.
+## Getting Started
 
-## Requirements
-No special requirements
+These instructions will help you set up the project on your local machine for development and testing purposes.
 
-## Installation
+### Prerequisites
 
-```bash
-git clone https://github.com/matiasgays/React_1.git
-cd ../path/to/the/file
-npm install
-npm start
-```
-## Technologies
-The project was built with
-* [![Node.js]][Node-url]
-* [![React.js]][React-url]
-* [![MUI]][MUI-url]
-* [![Firebase]][Firebase-url]
+- Node.js 
+- npm or yarn
+- A Firebase account.
 
-## Configuration
+### Installing
 
-There is no configuration needed.
+1. Clone the repository
+2. Run `npm install` or `yarn install` to install the necessary dependencies
+3. Run `npm start` or `yarn start` to start the development server
 
-## Usage
+## Built With
 
-![](https://github.com/matiasgays/IoTy_navigation.gif/blob/main/IoTy_navigation.gif?raw=true)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)&nbsp;
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)&nbsp;
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)&nbsp;
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=black)&nbsp;
+![MUI](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)&nbsp;
 
-*Description:*
-- An item list view (displayed as cards) showing all products retrieved from the database
-- A detail view of each item
-- A category menu accesible from the navigation bar
-- A cart view
-- A form embedded in the cart view that simulates a checkout form. The submitted data is stored in a database collection
+## Authors
 
-## Contributing
-Pull requests are welcome.
+**Matias Gays** - *IT Developer* - 
 
-Please make sure to update tests as appropriate.
+<a href="https://github.com/matiasgays"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/></a>
+
 
 ## License
 
-This project is not licensed.
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[Logo-url]: https://github.com/matiasgays/React_1/blob/main/src/images/logo_thumbnail.png?raw=true
-[Node.js]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
-[Node-url]: https://nodejs.org/en/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[MUI]: https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white
-[MUI-url]: https://mui.com/material-ui/getting-started/overview/
-[Firebase]: https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase
-[Firebase-url]: https://firebase.google.com/
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
