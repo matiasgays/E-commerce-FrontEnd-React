@@ -1,6 +1,6 @@
 # E-commerce Front-end
 
-This project is the front-end of an e-commerce platform built with React. It includes features such as product catalog, shopping cart, checkout, and customer management.
+This project is the front-end of an e-commerce platform built with React and deployed to GitHub Pages. It includes features such as product catalog, shopping cart, checkout, and customer management.
 
 ## Getting Started
 
